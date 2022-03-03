@@ -6,8 +6,8 @@ import { getAuthToken } from "../../helpers/token";
 const NewTask = () => {
   const token = getAuthToken();
 
-  const TASK_URL = "http://localhost:3001/api/task/create";
-  const LIST_URL = "http://localhost:3001/api/list/lists";
+  const TASK_URL = "https://todoapprestapi.herokuapp.com/api/task/create";
+  const LIST_URL = "https://todoapprestapi.herokuapp.com/api/list/lists";
 
   const [taskTitle, setTaskTitle] = useState("");
   const [taskDescription, setTaskDescription] = useState("");

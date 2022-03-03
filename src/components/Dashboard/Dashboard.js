@@ -14,8 +14,8 @@ import NewList from "../List/NewList";
 const Dashboard = () => {
   const [tasks, setTasks] = useState([]);
   const [lists, setLists] = useState([]);
-  const TASKS_URL = "http://localhost:3001/api/task/tasks";
-  const LISTS_URL = "http://localhost:3001/api/list/lists";
+  const TASKS_URL = "https://todoapprestapi.herokuapp.com/api/task/tasks";
+  const LISTS_URL = "https://todoapprestapi.herokuapp.com/api/list/lists";
   const token = getAuthToken();
   console.log("lists", lists);
   useEffect(() => {

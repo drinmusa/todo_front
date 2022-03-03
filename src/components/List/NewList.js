@@ -6,7 +6,7 @@ import { getAuthToken } from "../../helpers/token";
 const NewList = () => {
   const token = getAuthToken();
 
-  const URL = "http://localhost:3001/api/list/create";
+  const URL = "https://todoapprestapi.herokuapp.com/api/list/create";
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
