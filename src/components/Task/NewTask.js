@@ -12,7 +12,7 @@ const NewTask = () => {
   const [taskTitle, setTaskTitle] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [due_date, setDueDate] = useState("");
-  const [list, setList] = useState("");
+  const [list, setList] = useState(null);
 
   const [succes, setSucces] = useState("");
 
@@ -60,6 +60,7 @@ const NewTask = () => {
         setDueDate("");
       })
       .catch((error) => {
+        console.log("error.response.data", error.response.data);
         setErrors(error.response.data);
       });
   };
@@ -120,7 +121,7 @@ const NewTask = () => {
               setList(selectedList);
             }}
           >
-            <option value="">Without List</option>
+            <option value={null}>Without List</option>
             {lists.map((list, i) => {
               return (
                 <option key={i} value={list._id}>

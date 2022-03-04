@@ -66,6 +66,8 @@ const List = ({ id, title, description, func }) => {
     })
       .then((response) => {
         handleClick();
+        setNewTitle("");
+        setNewDescription("");
         func();
       })
       .catch((error) => {

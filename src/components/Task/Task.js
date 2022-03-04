@@ -20,7 +20,7 @@ const Task = ({ id, title, description, status, list_id, due_date, func }) => {
   const [list, setList] = useState(""); //used to set list when creating task
   const [lists, setLists] = useState([]); //holds lists
   const [listName, setListName] = useState("");
-
+  const [update, setUpdate] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
   const handleClick = () => {
     setIsFlipped(!isFlipped);
@@ -57,7 +57,7 @@ const Task = ({ id, title, description, status, list_id, due_date, func }) => {
     };
     fetchLists();
     fetchSingleList();
-  }, []);
+  }, [update]);
   const handleDelete = async () => {
     const response = await Axios.post(
       DELETE_URL,
@@ -83,13 +83,14 @@ const Task = ({ id, title, description, status, list_id, due_date, func }) => {
     params.description = newDescription !== "" ? newDescription : description;
     params.list = newList !== "" ? newList : list_id;
     params.due_date = newDate !== "" ? newDate : due_date;
-    const response = await Axios.post(EDIT_URL, {
-      params,
+    const response = await Axios.post(EDIT_URL, params, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => {
         console.log(response);
+
         handleClick();
+        setUpdate(!update);
         setNewTitle("");
         setNewDescription("");
         setNewDate("");
@@ -178,7 +179,7 @@ const Task = ({ id, title, description, status, list_id, due_date, func }) => {
                 setNewList(selectedList);
               }}
             >
-              <option value="">Without List</option>
+              <option value={null}>Without List</option>
               {lists.map((list, i) => {
                 return (
                   <option key={i} value={list._id}>
