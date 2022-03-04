@@ -1,0 +1,12 @@
+.lists-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+	background-color: #f2f2f2;
+	height: 90vh;
+}
+.lists {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}

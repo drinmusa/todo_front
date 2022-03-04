@@ -1,25 +1,27 @@
-.login_container {
+.register-container {
   font-family: "Hind Vadodara";
   display: flex;
   flex-direction: column;
-  height: 90vh;
   background-color: #f2f2f2;
   justify-content: center;
   align-items: center;
 }
-.login-form {
-  height: 560px;
-  width: 636px;
+.register-form {
   display: flex;
+  width: 636px;
+  height: 940px;
   flex-direction: column;
   align-items: center;
   background-color: #fff;
+	margin-top: 40px;
+	margin-bottom: 40px;
+
 }
 .col {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 .title {
   font-size: 24px;
@@ -31,10 +33,10 @@
 .input {
   height: 56px;
   width: 385px;
+  margin-bottom: 40px;
   padding-left: 8px;
-  margin-bottom: 0;
 }
-.login-btn {
+.register-btn {
   width: 400px;
   height: 56px;
   border: none;
@@ -46,3 +48,4 @@
   margin-top: -25px;
   color: red;
 }
+

@@ -1,0 +1,27 @@
+.new-task-container{
+	font-family: "Hind Vadodara";
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  background-color: #f2f2f2;
+  justify-content: center;
+  align-items: center;
+}
+.new-task-form{
+display: flex;
+width: 636px;
+height: 740px;
+flex-direction: column;
+align-items: center;
+background-color: #fff;
+margin-top: 40px;
+margin-bottom: 40px;
+}
+.create-btn{
+	width: 400px;
+  height: 56px;
+  border: none;
+  border-radius: 4px;
+  background-color: #0062ae;
+  color: #fff;
+}

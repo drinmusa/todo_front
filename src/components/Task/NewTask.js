@@ -2,19 +2,20 @@ import { useState, useEffect } from "react";
 
 import Axios from "axios";
 import { getAuthToken } from "../../helpers/token";
-
+import "./NewTask.css";
 const NewTask = () => {
   const token = getAuthToken();
 
-  const TASK_URL = "https://todoapprestapi.herokuapp.com/api/task/create";
-  const LIST_URL = "https://todoapprestapi.herokuapp.com/api/list/lists";
+  const TASK_URL = "http://localhost:3001/api/task/create";
+  const LIST_URL = "http://localhost:3001/api/list/lists";
 
   const [taskTitle, setTaskTitle] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [due_date, setDueDate] = useState("");
   const [list, setList] = useState("");
 
-  const [addedTask, setAddedTask] = useState({});
+  const [succes, setSucces] = useState("");
+
   const [errors, setErrors] = useState({});
   const [listFetchErrors, setListFetchErrors] = useState({});
 
@@ -40,6 +41,7 @@ const NewTask = () => {
 
     const response = await Axios.post(
       TASK_URL,
+
       {
         title: taskTitle,
         description: taskDescription,
@@ -51,64 +53,86 @@ const NewTask = () => {
       }
     )
       .then((response) => {
-        console.log("response from task submit", response);
+        console.log(response);
+        setSucces("Task added succesfully");
+        setTaskDescription("");
+        setList("");
+        setDueDate("");
       })
       .catch((error) => {
         setErrors(error.response.data);
       });
   };
   return (
-    <div>
-      <div>
-        {Object.values(errors).map((error, i) => {
-          return <li key={i}> {error}</li>;
-        })}
-      </div>
-      <form onSubmit={handleTaskSubmit}>
-        <label htmlFor="title">Title</label>
-        <input
-          type="text"
-          placeholder="Title"
-          id="title"
-          onChange={(e) => setTaskTitle(e.target.value)}
-        />
-        <br />
-        <br />
-        <label htmlFor="description">Description</label>
-        <input
-          type="text"
-          placeholder="Description"
-          id="description"
-          onChange={(e) => setTaskDescription(e.target.value)}
-        />
-        <br />
-        <br />
-        <label htmlFor="date">Due date</label>
-        <input
-          type="date"
-          id="date"
-          onChange={(e) => setDueDate(e.target.value)}
-        />
-        <br />
-        <br />
-        <select
-          onChange={(e) => {
-            const selectedList = e.target.value;
-            setList(selectedList);
-          }}
-        >
-          <option value="">Solo</option>
-          {lists.map((list, i) => {
-            return (
-              <option key={i} value={list._id}>
-                {list.title}
-              </option>
-            );
-          })}
-        </select>
-        <br />
-        <br />
-        <input type="submit" value="Create Task" />
+    <div className="new-task-container">
+      <form onSubmit={handleTaskSubmit} className="new-task-form">
+        <div className="row">
+          <p className="title">New Task</p>
+        </div>
+        <div className="col">
+          <label htmlFor="title" className="label">
+            Title
+          </label>
+          <input
+            type="text"
+            placeholder="Title"
+            id="title"
+            onChange={(e) => setTaskTitle(e.target.value)}
+            className="input"
+            value={taskTitle}
+          />
+          {errors.title ? <p className="error">{errors.title}</p> : null}
+        </div>
+        <div className="col">
+          <label htmlFor="description" className="label">
+            Description
+          </label>
+          <input
+            type="text"
+            placeholder="Description"
+            id="description"
+            onChange={(e) => setTaskDescription(e.target.value)}
+            className="input"
+            value={taskDescription}
+          />
+          {errors.description ? (
+            <p className="error">{errors.description}</p>
+          ) : null}
+        </div>
+        <div className="col">
+          <label htmlFor="date" className="label">
+            Due date
+          </label>
+          <input
+            type="date"
+            id="date"
+            onChange={(e) => setDueDate(e.target.value)}
+            className="input"
+            value={due_date}
+          />
+          {errors.due_date ? <p className="error">{errors.due_date}</p> : null}
+        </div>
+        <div className="col">
+          <select
+            className="input"
+            onChange={(e) => {
+              const selectedList = e.target.value;
+              setList(selectedList);
+            }}
+          >
+            <option value="">Without List</option>
+            {lists.map((list, i) => {
+              return (
+                <option key={i} value={list._id}>
+                  {list.title}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+
+        <input type="submit" className="create-btn" value="Create Task" />
+        <div>{succes != "" ? <p>{succes}</p> : null}</div>
       </form>
     </div>
   );

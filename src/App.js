@@ -4,7 +4,10 @@ import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import Navigation from "./components/Navigation/Navigation";
-import Dashboard from "./components/Dashboard/Dashboard";
+import Lists from "./components/List/Lists";
+import Tasks from "./components/Task/Tasks";
+import NewTask from "./components/Task/NewTask";
+import NewList from "./components/List/NewList";
 function App() {
   return (
     <div className="App">
@@ -14,7 +17,10 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/lists" element={<Lists />} />
+          <Route path="/tasks" element={<Tasks />} />
+          <Route path="/newtask" element={<NewTask />} />
+          <Route path="/newlist" element={<NewList />} />
         </Routes>
       </Router>
     </div>

@@ -1,0 +1,15 @@
+.tasks-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+	height: 100%;
+	background-color: #f2f2f2;
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+.tasks {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
